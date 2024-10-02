@@ -20,11 +20,22 @@ public class UserServiceImpl implements UserService {
 	@Autowired
     private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EmailService emailService;
+	
 	
 
 	    public User registerUser(User user) {
 	        user.setPassword(passwordEncoder.encode(user.getPassword()));
-	        return userRepository.save(user);
+	        User savedUser = userRepository.save(user);
+
+	        // Send confirmation email
+	        String subject = "Registration Confirmation";
+	        String body = "Dear " + user.getName() + ",\n\nThank you for registering to our voting system." +
+	                " Your registration was successful!\n\nBest Regards,\nVoting System Team";
+	        emailService.sendConfirmationEmail(user.getEmail(), subject, body);
+
+	        return savedUser;
 	        
 	       }
 
