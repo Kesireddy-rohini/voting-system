@@ -19,11 +19,14 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
     private PasswordEncoder passwordEncoder;
+	
+	
 
 	    public User registerUser(User user) {
 	        user.setPassword(passwordEncoder.encode(user.getPassword()));
 	        return userRepository.save(user);
-	    }
+	        
+	       }
 
 	 
 	   @Override
@@ -34,5 +37,12 @@ public class UserServiceImpl implements UserService {
 	        }
 			return Optional.empty();
 		}
+
+
+	@Override
+	public boolean checkIfEmailExists(String email) {
+	    return userRepository.findByEmail(email).isPresent();
+	}
+
 
 }

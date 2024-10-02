@@ -31,15 +31,28 @@ public class UserController {
 	        return ResponseEntity.ok("User registered successfully");
 	    }
 
+	  
 	    @PostMapping("/login")
 	    public ResponseEntity<String> loginUser(@RequestParam String email, @RequestParam String password) {
+	        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+	            return ResponseEntity.badRequest().body("Please fill in all the necessary details.");
+	        }
+
 	        Optional<User> user = userService.loginUser(email, password);
+
 	        if (user.isPresent()) {
 	            return ResponseEntity.ok("User logged in successfully");
 	        }
-	        return ResponseEntity.status(401).body("Invalid email or password");
+
+	        boolean emailExists = userService.checkIfEmailExists(email);
+	        if (!emailExists) {
+	            return ResponseEntity.status(401).body("Email ID was not registered");
+	        } else {
+	            return ResponseEntity.status(401).body("Please enter the correct password");
+	        }
 	    }
 	    
+
 	    @ExceptionHandler(MethodArgumentNotValidException.class)
 		public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
 			StringBuilder errors = new StringBuilder();

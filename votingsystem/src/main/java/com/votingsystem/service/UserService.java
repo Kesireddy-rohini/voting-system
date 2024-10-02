@@ -9,5 +9,7 @@ public interface UserService {
 	public User registerUser(User user);
 	
 	public Optional<User> loginUser(String email, String password);
+	boolean checkIfEmailExists(String email);
+
 
 }
