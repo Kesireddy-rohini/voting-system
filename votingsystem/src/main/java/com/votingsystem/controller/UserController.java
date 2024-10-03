@@ -27,6 +27,7 @@ public class UserController {
 	private UserService userService;
 	
 	 @PostMapping("/register")
+	 
 	 @CrossOrigin(origins = "http://127.0.0.1:5500") 
 	    public ResponseEntity<String> registerUser(@Valid @RequestBody User user) {
 	        userService.registerUser(user);
