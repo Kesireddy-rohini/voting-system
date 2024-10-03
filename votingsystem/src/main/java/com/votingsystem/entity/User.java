@@ -33,6 +33,9 @@ public class User {
 
     @NotBlank
     private String gender; // e.g., "Male", "Female", "Other"
+    
+    @NotBlank
+    private String phonenumber;
 
     @NotBlank
     private String profession; 

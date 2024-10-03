@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ public class UserController {
 	private UserService userService;
 	
 	 @PostMapping("/register")
+	 @CrossOrigin(origins = "http://127.0.0.1:5500") 
 	    public ResponseEntity<String> registerUser(@Valid @RequestBody User user) {
 	        userService.registerUser(user);
 	        return ResponseEntity.ok("User registered successfully");
@@ -33,6 +35,7 @@ public class UserController {
 
 	  
 	    @PostMapping("/login")
+	    @CrossOrigin(origins = "http://127.0.0.1:5500") 
 	    public ResponseEntity<String> loginUser(@RequestParam String email, @RequestParam String password) {
 	        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
 	            return ResponseEntity.badRequest().body("Please fill in all the necessary details.");
