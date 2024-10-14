@@ -15,15 +15,15 @@ public class VoteController {
     @Autowired
     private VoteService voteService;
 
-    @PostMapping
-    public ResponseEntity<Void> castVote(@RequestBody Vote vote) {
-        voteService.saveVote(vote);
-        return ResponseEntity.ok().build();
+   @PostMapping
+    public ResponseEntity<String> castVote(@RequestParam String email, @RequestParam Long candidateId) {
+        // Create a Vote object with only email and candidateId
+        Vote vote = new Vote();
+        vote.setCandidateId(candidateId);
+        vote.setEmail(email);
+
+        String responseMessage = voteService.saveVote(vote);
+        return ResponseEntity.ok(responseMessage);
     }
 
-    @GetMapping("/results")
-    public ResponseEntity<Map<String, Map<Long, Integer>>> getVoteResults() {
-        Map<String, Map<Long, Integer>> results = voteService.getVotesByProfession();
-        return ResponseEntity.ok(results);
-    }
 }

@@ -33,9 +33,8 @@ public class UserController {
 	        userService.registerUser(user);
 	        return ResponseEntity.ok("User registered successfully");
 	    }
-
-	  
-	    @PostMapping("/login")
+	
+        @PostMapping("/login")
 	    @CrossOrigin(origins = "http://127.0.0.1:5500") 
 	    public ResponseEntity<String> loginUser(@RequestParam String email, @RequestParam String password) {
 	        if (email == null || email.isEmpty() || password == null || password.isEmpty()) {

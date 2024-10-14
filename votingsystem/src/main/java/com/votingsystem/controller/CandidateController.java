@@ -1,15 +1,19 @@
 package com.votingsystem.controller;
 
 import com.votingsystem.entity.Candidate;
+import com.votingsystem.entity.User;
 import com.votingsystem.service.CandidateService;
+import com.votingsystem.service.UserService;
 
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/candidates")
@@ -17,6 +21,9 @@ public class CandidateController {
 
     @Autowired
     private CandidateService candidateService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<Candidate>> getAllCandidates() {

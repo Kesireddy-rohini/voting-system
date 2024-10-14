@@ -1,7 +1,10 @@
 package com.votingsystem.service;
 
 import com.votingsystem.entity.Candidate;
+import com.votingsystem.entity.User;
+import com.votingsystem.entity.Vote;
 import com.votingsystem.repository.CandidateRepository;
+import com.votingsystem.repository.VoteRepository;
 
 import jakarta.validation.Valid;
 
@@ -15,6 +18,10 @@ public class CandidateService {
 
     @Autowired
     private CandidateRepository candidateRepository;
+    
+	/*
+	 * @Autowired private VoteRepository voteRepository;
+	 */
 
     public List<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
@@ -36,4 +43,5 @@ public class CandidateService {
             return false;  // Candidate does not exist
         }
     }
+
 }
