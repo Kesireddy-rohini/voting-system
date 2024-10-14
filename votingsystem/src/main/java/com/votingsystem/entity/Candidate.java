@@ -19,8 +19,8 @@ public class Candidate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;         // Candidate name
-    private String agenda;       // Agenda of the candidate
+    private String name;         
+    private String agenda;       
    
    
 }

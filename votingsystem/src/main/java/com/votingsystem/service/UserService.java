@@ -10,6 +10,6 @@ public interface UserService {
 	
 	public Optional<User> loginUser(String email, String password);
 	boolean checkIfEmailExists(String email);
-
-
+	
 }
+
