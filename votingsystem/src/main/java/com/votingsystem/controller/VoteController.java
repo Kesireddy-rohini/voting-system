@@ -26,4 +26,10 @@ public class VoteController {
         return ResponseEntity.ok(responseMessage);
     }
 
+   @GetMapping("/profession")
+   public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
+       Map<String, Map<Long, Integer>> votesByProfession = voteService.getVotesByProfession();
+       return ResponseEntity.ok(votesByProfession);
+   }
+
 }
