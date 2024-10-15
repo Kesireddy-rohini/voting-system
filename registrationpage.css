@@ -1,0 +1,115 @@
+/* CSS Variables for Colors */
+:root {
+    --background-gradient: linear-gradient(to bottom right, #2B2D42, #8D99AE);
+    --form-background: rgba(255, 255, 255, 0.9);
+    --button-color: #EF233C;
+    --button-hover-color: #D90429;
+    --text-color: #2B2D42;
+    --border-color: #8D99AE;
+}
+
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: var(--background-gradient); /* Elegant color scheme */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 20px; /* Space between columns */
+    width: 90%;
+    max-width: 1200px;
+    background-color: var(--form-background); /* Semi-transparent white */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+}
+
+h1 {
+    font-size: 32px;
+    color: var(--text-color); /* Dark gray */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: var(--text-color); /* Dark gray */
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color); /* Light gray */
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: var(--button-color); /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: var(--button-color);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* Full width */
+}
+
+button:hover {
+    background-color: var(--button-hover-color); /* Darker red on hover */
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    width: 80px; /* Fixed size for icons */
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+
+    .content {
+    }
+}
+

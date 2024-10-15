@@ -1,0 +1,98 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #002868, #BF0A30); /* USA flag colors: navy and red */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 36px;
+    color: #002868; /* Navy blue for USA theme */
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px #BF0A30; /* Red shadow */
+}
+
+.candidates {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.candidate {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 300px;
+    margin: 20px;
+}
+
+.candidate:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.candidate img {
+    width: 100%; /* This maintains the full width of the container */
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    border-radius: 10px;
+}
+
+.candidate h2 {
+    font-size: 24px;
+    color: #333;
+    margin: 15px 0;
+}
+
+.agenda {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #BF0A30; /* Red button */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #002868; /* Turns navy blue on hover */
+}
+
+@media (max-width: 768px) {
+    .candidates {
+        flex-direction: column;
+    }
+
+    .candidate {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
