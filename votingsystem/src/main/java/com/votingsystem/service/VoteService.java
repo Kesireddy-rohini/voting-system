@@ -20,6 +20,9 @@ public class VoteService {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private EmailService emailService;
 
     // Save the vote
     public String saveVote(Vote vote) {
@@ -34,6 +37,14 @@ public class VoteService {
             // Save the vote with the user's profession
             vote.setProfession(validUser.get().getProfession());
             voteRepository.save(vote);
+            
+            String subject = "Vote Preference Confirmation";
+            String body = "Dear " + validUser.get().getName() + ",\n\n" +
+                          "Thank you for sharing your opinion! Your preference for candidate ID: " + vote.getCandidateId() + " has been recorded.\n\n" +
+                          "We appreciate your feedback and value your participation.\n\n" +
+                          "Best regards,\nVoting System Team";
+            emailService.sendConfirmationEmail(vote.getEmail(), subject, body);
+
             return "Vote saved successfully.";
         } else {
             return "Not a registered user.";
