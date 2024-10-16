@@ -22,9 +22,6 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
     
-    @Autowired
-    private UserService userService;
-
     @GetMapping
     public ResponseEntity<List<Candidate>> getAllCandidates() {
         List<Candidate> candidates = candidateService.getAllCandidates();
