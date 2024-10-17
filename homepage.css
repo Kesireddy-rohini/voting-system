@@ -24,7 +24,7 @@ body, html {
 
 h1 {
     font-size: 36px;
-    color: #002868; /* Navy blue for USA theme */
+    color: #002868; 
     margin-bottom: 40px;
     text-shadow: 1px 1px 2px #BF0A30; /* Red shadow */
 }
