@@ -19,13 +19,14 @@ import lombok.NoArgsConstructor;
 public class Vote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long voteId;
     
-	
-   // private String name;
+	private Long userId;
+    private String name;
     private String email;
     private Long candidateId;    
     private String profession;    
-   // private String gender;        
-    private int age;              
+    private String gender;        
+    private int age;  
+   
 }

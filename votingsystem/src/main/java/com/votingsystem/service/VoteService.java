@@ -35,7 +35,13 @@ public class VoteService {
             }
 
             // Save the vote with the user's profession
+            User user = validUser.get();
+            vote.setUserId(user.getUserId());
             vote.setProfession(validUser.get().getProfession());
+            vote.setName(user.getName());
+            vote.setGender(user.getGender());
+            vote.setAge(user.getAge());
+           
             voteRepository.save(vote);
             
             String subject = "Vote Preference Confirmation";
