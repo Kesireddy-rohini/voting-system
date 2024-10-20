@@ -1,12 +1,14 @@
 package com.votingsystem.service;
 
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.votingsystem.entity.User;
+import com.votingsystem.entity.Vote;
 import com.votingsystem.repository.UserRepository;
 
 @Service
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
     // Register user
     public User registerUser(User user) {
+    	 user.setUserId(generateUniqueId()); 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
 
@@ -47,5 +50,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkIfEmailExists(String email) {
         return userRepository.findByEmail(email).isPresent();
+    }
+    
+    
+
+    private Long generateUniqueId() {
+        Random random = new Random();
+        return (long) (10000 + random.nextInt(90000));  // Generates a 5-digit unique ID
     }
 }
