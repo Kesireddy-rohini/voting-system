@@ -23,24 +23,7 @@
         </div>
     </div>
 
-    <script>
-        async function handleLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch(`http://127.0.0.1:8081/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
-                    method: 'POST',
-                });
-
-                const message = await response.text();
-                alert(message);
-            } catch (error) {
-                alert('Error: ' + error.message);
-            }
-        }
-    </script>
+    <script> src="loginpage.js" </script>
 </body>
 </html>
 
