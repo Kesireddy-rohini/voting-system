@@ -10,6 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/votes")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class VoteController {
 
     @Autowired
