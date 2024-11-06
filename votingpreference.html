@@ -10,33 +10,32 @@
 </head>
 <body>
     <div class="container">
-        <h1>Kindly Indicate Your Voting Preference
-        </h1>
+        <h1>Kindly Indicate Your Voting Preference</h1>
+        
+        <!-- Candidate Options -->
         <label class="candidate-label">
-            <input type="radio" id="candidate1" name="candidate" value="Candidate 1" style="display:none;">
-            <img src="donald trumph.png" alt="Candidate 1" class="candidate-image">
+            <input type="radio" id="candidate1" name="candidate" value="1" style="display:none;">
+            <img src="donald trumph.png" alt="Donald Trump" class="candidate-image">
             <div>Candidate 1: Donald Trump</div>
         </label>
         <label class="candidate-label">
-            <input type="radio" id="candidate2" name="candidate" value="Candidate 2" style="display:none;">
-            <img src="kamala harris.png" alt="Candidate 2" class="candidate-image">
+            <input type="radio" id="candidate2" name="candidate" value="2" style="display:none;">
+            <img src="kamala harris.png" alt="Kamala Harris" class="candidate-image">
             <div>Candidate 2: Kamala Harris</div>
         </label>
-        <div class="button-container">
-            <button id="submitButton" class="button-submit" onclick="submitVote()">Submit Vote Preference</button>
-        </div>
         
-
-
-       <div class="graphs" id="graphs">
-             <canvas id="ageGraph"></canvas>
-             <canvas id="genderGraph"></canvas>
-             <canvas id="professionGraph"></canvas>
+        <div class="button-group">
+            <button id="submitButton" class="button-submit" onclick="submitVote()">Submit Vote Preference</button>
+            <button id="exitButton" class="button-exit" onclick="redirectToHome()">Exit</button>
         </div>
-    </div>
+    
+        <!-- Graphs Section -->
+        <div class="graphs" id="graphs" style="display: none;">
+            <canvas id="ageGraph"></canvas>
+            <canvas id="genderGraph"></canvas>
+            <canvas id="professionGraph"></canvas>
+        </div>
 
     <script src="vote.js"></script>
-    <!-- Exit button to redirect to the home page -->
-    <button id="exitButton" class="button-exit" onclick="redirectToHome()">Exit</button>
 </body>
 </html>
