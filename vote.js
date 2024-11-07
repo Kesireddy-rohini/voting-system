@@ -1,17 +1,27 @@
-function submitVote(candidateId) {
-    console.log("Candidate ID:", candidateId); // Debugging line
-    const email = sessionStorage.getItem("userEmail");
+function submitVote() {
+    // Get selected candidateId
+    const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
+    const candidateId = selectedCandidate ? selectedCandidate.value : null;
 
+    if (!candidateId) {
+        alert("Please select a candidate before submitting.");
+        return;
+    }
+
+    const email = sessionStorage.getItem("userEmail");
     if (!email) {
         alert("Please login to vote.");
         return;
     }
 
-    fetch(`http://localhost:8081/votes?candidateId=${candidateId}`, {
+    // Debugging line to check candidateId
+    console.log("Candidate ID:", candidateId);
+
+    // Include email in the query string
+    fetch(`http://localhost:8081/votes?candidateId=${candidateId}&email=${email}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'userEmail': email
+            'Content-Type': 'application/json'
         }
     })
     .then(response => response.text())
@@ -22,6 +32,7 @@ function submitVote(candidateId) {
         alert("Error: " + error.message);
     });
 }
+
 
 
 

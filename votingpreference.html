@@ -9,26 +9,29 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Kindly Indicate Your Voting Preference</h1>
+        <div class="container">
+            <h1>Kindly Indicate Your Voting Preference</h1>
         
-        <!-- Candidate Options -->
-        <label class="candidate-label">
-            <input type="radio" id="candidate1" name="candidate" value="1" style="display:none;">
-            <img src="donald trumph.png" alt="Donald Trump" class="candidate-image">
-            <div>Candidate 1: Donald Trump</div>
-        </label>
-        <label class="candidate-label">
-            <input type="radio" id="candidate2" name="candidate" value="2" style="display:none;">
-            <img src="kamala harris.png" alt="Kamala Harris" class="candidate-image">
-            <div>Candidate 2: Kamala Harris</div>
-        </label>
+            <!-- Candidate Options -->
+            <form id="voteForm">
+                <label class="candidate-label">
+                    <input type="radio" id="candidate1" name="candidate" value="1" style="display:none;">
+                    <img src="donald trumph.png" alt="Donald Trump" class="candidate-image">
+                    <div>Candidate 1: Donald Trump</div>
+                </label>
+                <label class="candidate-label">
+                    <input type="radio" id="candidate2" name="candidate" value="2" style="display:none;">
+                    <img src="kamala harris.png" alt="Kamala Harris" class="candidate-image">
+                    <div>Candidate 2: Kamala Harris</div>
+                </label>
+            </form>
         
-        <div class="button-group">
-            <button id="submitButton" class="button-submit" onclick="submitVote()">Submit Vote Preference</button>
-            <button id="exitButton" class="button-exit" onclick="redirectToHome()">Exit</button>
+            <div class="button-group">
+                <button id="submitButton" class="button-submit" onclick="submitVote()">Submit Vote Preference</button>
+                <button id="exitButton" class="button-exit" onclick="redirectToHome()">Exit</button>
+            </div>
         </div>
-    
+        
         <!-- Graphs Section -->
         <div class="graphs" id="graphs" style="display: none;">
             <canvas id="ageGraph"></canvas>
