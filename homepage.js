@@ -1,11 +1,13 @@
-function showAgenda(agendaId) {
-    // Get the element by its ID (agenda ID)
+function showFullAgenda(agendaId) {
+    // Show the full-page agenda
     const agenda = document.getElementById(agendaId);
-
-    // Toggle the display property to show/hide the agenda
-    if (agenda.style.display === "none") {
-        agenda.style.display = "block"; // Show the agenda
-    } else {
-        agenda.style.display = "none"; // Hide the agenda if already visible
-    }
+    agenda.style.display = "flex";
 }
+
+function closeFullAgenda(agendaId) {
+    // Hide the full-page agenda
+    const agenda = document.getElementById(agendaId);
+    agenda.style.display = "none";
+}
+
+

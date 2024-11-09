@@ -8,7 +8,7 @@
 body, html {
     height: 100%;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom right, #002868, #BF0A30); /* USA flag colors: navy and red */
+    background: linear-gradient(to bottom right, #002868, #BF0A30);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,16 +17,16 @@ body, html {
 .container {
     text-align: center;
     padding: 50px;
-    background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     font-size: 36px;
-    color: #002868; 
+    color: #002868;
     margin-bottom: 40px;
-    text-shadow: 1px 1px 2px #BF0A30; /* Red shadow */
+    text-shadow: 1px 1px 2px #BF0A30;
 }
 
 .candidates {
@@ -41,41 +41,23 @@ h1 {
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     width: 300px;
     margin: 20px;
-}
-
-.candidate:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 .candidate img {
-    width: 100%; /* This maintains the full width of the container */
-    height: 200px; /* Fixed height */
-    object-fit: cover; /* Ensures the image scales properly without distortion */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
     border-radius: 10px;
-}
-
-.candidate h2 {
-    font-size: 24px;
-    color: #333;
-    margin: 15px 0;
-}
-
-.agenda {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.5;
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    background-color: #BF0A30; /* Red button */
+    background-color: #BF0A30;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -83,7 +65,52 @@ button {
 }
 
 button:hover {
-    background-color: #002868; /* Turns navy blue on hover */
+    background-color: #002868;
+}
+
+/* Full-page agenda overlay */
+.full-page-agenda {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.agenda-content {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.agenda-content h2 {
+    font-size: 28px;
+    color: #002868;
+    margin-bottom: 20px;
+}
+
+.agenda-content p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.agenda-content button {
+    background-color: #BF0A30;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -96,3 +123,44 @@ button:hover {
         width: 100%;
     }
 }
+
+
+/* Full-page agenda overlay */
+.full-page-agenda {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.agenda-content {
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+
+.agenda-content button {
+    margin-top: 20px;
+    background-color: #BF0A30;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
