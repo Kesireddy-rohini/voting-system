@@ -33,4 +33,28 @@ public class VoteController {
        return ResponseEntity.ok(votesByProfession);
    }
 
+<<<<<<< HEAD
+    // Get votes categorized by profession
+    @GetMapping("/profession")
+    public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
+        Map<String, Map<Long, Integer>> votesByProfession = voteService.getVotesByProfession();
+        return ResponseEntity.ok(votesByProfession);
+    }
+
+    // Get votes categorized by age
+    @GetMapping("/age")
+    public ResponseEntity<Map<Integer, Map<Long, Integer>>> getVotesByAge() {
+        Map<Integer, Map<Long, Integer>> votesByAge = voteService.getVotesByAge();
+        return ResponseEntity.ok(votesByAge);
+    }
+
+    // Get votes categorized by gender
+    @GetMapping("/gender")
+    public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByGender() {
+        Map<String, Map<Long, Integer>> votesByGender = voteService.getVotesByGender();
+        return ResponseEntity.ok(votesByGender);
+    }
 }
+=======
+}
+>>>>>>> d6d42e8cd81bad25c545fa540aa14948855e34cb
