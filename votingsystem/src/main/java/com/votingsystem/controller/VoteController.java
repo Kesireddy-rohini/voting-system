@@ -16,24 +16,24 @@ public class VoteController {
     @Autowired
     private VoteService voteService;
 
-    // Cast or update vote
-    @PostMapping
-    public ResponseEntity<String> castOrUpdateVote(@RequestParam String email, @RequestParam Long candidateId) {
+   @PostMapping
+    public ResponseEntity<String> castVote(@RequestParam String email, @RequestParam Long candidateId) {
+        // Create a Vote object with only email and candidateId
         Vote vote = new Vote();
         vote.setCandidateId(candidateId);
         vote.setEmail(email);
 
-        String responseMessage = voteService.saveOrUpdateVote(vote);
+        String responseMessage = voteService.saveVote(vote);
         return ResponseEntity.ok(responseMessage);
     }
 
-    // Withdraw vote
-    @DeleteMapping("/withdraw")
-    public ResponseEntity<String> withdrawVote(@RequestParam String email) {
-        String responseMessage = voteService.withdrawVote(email);
-        return ResponseEntity.ok(responseMessage);
-    }
+   @GetMapping("/profession")
+   public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
+       Map<String, Map<Long, Integer>> votesByProfession = voteService.getVotesByProfession();
+       return ResponseEntity.ok(votesByProfession);
+   }
 
+<<<<<<< HEAD
     // Get votes categorized by profession
     @GetMapping("/profession")
     public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
@@ -55,3 +55,6 @@ public class VoteController {
         return ResponseEntity.ok(votesByGender);
     }
 }
+=======
+}
+>>>>>>> d6d42e8cd81bad25c545fa540aa14948855e34cb
