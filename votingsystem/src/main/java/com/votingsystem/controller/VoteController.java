@@ -16,24 +16,19 @@ public class VoteController {
     @Autowired
     private VoteService voteService;
 
-   @PostMapping
+    @PostMapping
     public ResponseEntity<String> castVote(@RequestParam String email, @RequestParam Long candidateId) {
         // Create a Vote object with only email and candidateId
         Vote vote = new Vote();
         vote.setCandidateId(candidateId);
         vote.setEmail(email);
 
-        String responseMessage = voteService.saveVote(vote);
+        String responseMessage = voteService.saveOrUpdateVote(vote);
         return ResponseEntity.ok(responseMessage);
     }
+    
+    
 
-   @GetMapping("/profession")
-   public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
-       Map<String, Map<Long, Integer>> votesByProfession = voteService.getVotesByProfession();
-       return ResponseEntity.ok(votesByProfession);
-   }
-
-<<<<<<< HEAD
     // Get votes categorized by profession
     @GetMapping("/profession")
     public ResponseEntity<Map<String, Map<Long, Integer>>> getVotesByProfession() {
@@ -55,6 +50,3 @@ public class VoteController {
         return ResponseEntity.ok(votesByGender);
     }
 }
-=======
-}
->>>>>>> d6d42e8cd81bad25c545fa540aa14948855e34cb
