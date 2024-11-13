@@ -1,4 +1,4 @@
-name: Backend CI Pipeline
+name: CI/CD Workflow for Voting System Tests
 
 on:
   push:
@@ -9,28 +9,29 @@ on:
       - main
 
 jobs:
-  build-and-test-backend:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17' 
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-            
-      - name: Build and Test Backend
-        working-directory: votingsystem
-        run: mvn clean verify
+    - name: Cache Maven packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
 
+    - name: Install dependencies
+      run: mvn dependency:go-offline
+
+    - name: Run tests
+      run: mvn test
