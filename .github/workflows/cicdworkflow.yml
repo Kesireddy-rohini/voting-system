@@ -30,5 +30,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: Change to votingsystem directory
+        run: cd votingsystem
+        
       - name: Build and Test Backend
         run: mvn clean verify
