@@ -29,9 +29,8 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
-
-      - name: Change to votingsystem directory
-        run: cd votingsystem
-        
+            
       - name: Build and Test Backend
+        working-directory: votingsystem
         run: mvn clean verify
+
