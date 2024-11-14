@@ -1,4 +1,5 @@
 /* Resetting default styles */
+*/* Resetting default styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +24,7 @@ body, html {
 }
 
 h1 {
-    font-size: 36px;
+    font-size: 30px;
     color: #002868;
     margin-bottom: 40px;
     text-shadow: 1px 1px 2px #BF0A30;
@@ -47,10 +48,10 @@ h1 {
 }
 
 .candidate img {
-    width: 100%;
-    height: 200px;
+    width: 50%;
+    height: 100px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 button {
@@ -210,8 +211,3 @@ button:hover {
     color: #333;
     white-space: pre-wrap;
 }
-
-
-
-
-
