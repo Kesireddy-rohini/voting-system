@@ -1,5 +1,5 @@
 name: CI/CD Workflow for Voting System
-
+ 
 on:
   push:
     branches:
@@ -7,21 +7,21 @@ on:
   pull_request:
     branches:
       - main
-
+ 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
+ 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
+ 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
-
+ 
     - name: Cache Maven packages
       uses: actions/cache@v3
       with:
@@ -29,11 +29,26 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-
+ 
+    - name: Clean previous builds
+      run: mvn clean
+      working-directory: votingsystem
+ 
     - name: Install dependencies
       run: mvn dependency:go-offline
-      working-directory: votingsystem  # Pointing to the directory containing the pom.xml
-
+      working-directory: votingsystem
+ 
     - name: Run all tests
-      run: mvn test -X
-      working-directory: votingsystem  # Pointing to the directory containing the pom.xml
+      run: mvn test -X -Dspring.profiles.active=test
+      working-directory: votingsystem
+ 
+    - name: List target directory contents
+      run: ls votingsystem/target
+      working-directory: votingsystem
+ 
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: surefire-reports
+        path: votingsystem/target/surefire-reports
