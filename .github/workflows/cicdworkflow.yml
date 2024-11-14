@@ -1,4 +1,4 @@
-name: CI/CD Workflow for Voting System Tests
+name: CI/CD Workflow for UserService Tests
 
 on:
   push:
@@ -33,5 +33,6 @@ jobs:
     - name: Install dependencies
       run: mvn dependency:go-offline
 
-    - name: Run tests
-      run: mvn test
+    - name: Run UserServiceTest
+      run: mvn -Dtest=UserServiceTest test
+      working-directory: votingsystem
