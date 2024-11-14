@@ -23,6 +23,12 @@
             </div>
         </div>
     </div>
+    <div class="qa-section">
+        <h2>Ask about the Candidates</h2>
+        <input type="text" id="userQuestion" placeholder="Type your question here about the candidates..." />
+        <button onclick="askQuestion()">Ask</button>
+        <div id="aiResponse"></div>
+    </div>
 
     <!-- Full-page Agenda for Donald Trump -->
     <div class="full-page-agenda" id="agenda-trump-full">
@@ -57,13 +63,8 @@
             <button onclick="closeFullAgenda('agenda-harris-full')">Close</button>
         </div>
     </div>
-    <!-- AI Q&A Section -->
-<div class="qa-section">
-    <h2>Ask about the Candidates</h2>
-    <input type="text" id="userQuestion" placeholder="Type your question here about the candidates..." />
-    <button onclick="askQuestion()">Ask</button>
-    <div id="aiResponse"></div>
-</div>
+    
+
 
 
     <script src="homepage.js"></script>

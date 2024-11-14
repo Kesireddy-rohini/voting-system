@@ -1,14 +1,3 @@
-function showFullAgenda(agendaId) {
-    // Show the full-page agenda
-    const agenda = document.getElementById(agendaId);
-    agenda.style.display = "flex";
-}
-
-function closeFullAgenda(agendaId) {
-    // Hide the full-page agenda
-    const agenda = document.getElementById(agendaId);
-    agenda.style.display = "none";
-}
 async function askQuestion() {
     const question = document.getElementById('userQuestion').value;
     const aiResponseElement = document.getElementById('aiResponse');
@@ -18,7 +7,7 @@ async function askQuestion() {
 
     try {
         // Send question to the backend API
-        const response = await fetch("http://localhost:5000/answer", {
+        const response = await fetch("http://127.0.0.1:5000", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ question: question })
@@ -35,3 +24,19 @@ async function askQuestion() {
 
 
 
+
+
+function hideAllAgendas() {
+    document.getElementById('agenda-trump-full').style.visibility = "hidden";
+    document.getElementById('agenda-harris-full').style.visibility = "hidden";
+}
+
+function showFullAgenda(agendaId) {
+    const agenda = document.getElementById(agendaId);
+    agenda.style.visibility = "visible";
+}
+
+function closeFullAgenda(agendaId) {
+    const agenda = document.getElementById(agendaId);
+    agenda.style.visibility = "hidden";
+}
