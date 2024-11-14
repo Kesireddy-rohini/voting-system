@@ -7,7 +7,7 @@ async function askQuestion() {
 
     try {
         // Send question to the backend API
-        const response = await fetch("http://127.0.0.1:5000", {
+        const response = await fetch("http://127.0.0.1:8000", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ question: question })
@@ -21,9 +21,6 @@ async function askQuestion() {
         console.error("Error fetching AI response:", error);
     }
 }
-
-
-
 
 
 function hideAllAgendas() {
