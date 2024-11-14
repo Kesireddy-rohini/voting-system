@@ -37,3 +37,7 @@ function closeFullAgenda(agendaId) {
     const agenda = document.getElementById(agendaId);
     agenda.style.visibility = "hidden";
 }
+function goToVotingPreference() {
+    // Redirect to the voting preference page
+    window.location.href = 'voting-preference.html'; // Replace with the actual URL or path to your voting preference page
+}
