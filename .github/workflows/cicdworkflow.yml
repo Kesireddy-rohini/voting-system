@@ -35,5 +35,5 @@ jobs:
       working-directory: votingsystem  # Pointing to the directory containing the pom.xml
 
     - name: Run all tests
-      run: mvn test
+      run: mvn test -X
       working-directory: votingsystem  # Pointing to the directory containing the pom.xml
