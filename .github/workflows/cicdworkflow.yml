@@ -24,13 +24,15 @@ jobs:
 
     - name: Install dependencies
       run: mvn install -DskipTests
+      working-directory: votingsystem # Specify the working directory as 'votingsystem' where the pom.xml is located
 
     - name: Build project
       run: mvn package -DskipTests
+      working-directory: votingsystem # Specify the working directory as 'votingsystem' for building
 
     - name: Upload build artifacts
       if: success()
       uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
-        path: target/*.jar
+        path: votingsystem/target/*.jar # Path updated to include 'votingsystem' as per project structure
