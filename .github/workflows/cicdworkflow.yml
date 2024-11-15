@@ -19,7 +19,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        java-version: '17' # Update to match your project's Java version
+        java-version: '17' # Update this to match your project's Java version
+        distribution: 'temurin' # Specify the Java distribution (e.g., temurin, zulu, adopt)
 
     - name: Install dependencies
       run: mvn install -DskipTests
