@@ -1,20 +1,16 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#main-container {
     padding: 20px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.candidates {
+.candidate-container {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
@@ -24,106 +20,24 @@ body {
     text-align: center;
 }
 
-.photo {
+.candidate-image {
     width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    height: 200px;
     margin-bottom: 10px;
 }
 
-/* Button Styling */
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    background-color: #f02626;
-    color: white;
-    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #218838;
+#graph-section {
+    margin-top: 30px;
 }
 
-/* Button Group for Submit and Exit buttons */
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between the buttons */
-    margin-top: 20px;
-}
-
-.button-submit {
-    background-color: #f02626;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.button-submit.voted {
-    background-color: #15861b; /* Darker green when voted */
-}
-
-.candidate-label {
-    display: inline-block;
-    cursor: pointer;
-    margin: 50px;
-}
-
-.candidate-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    transition: transform 0.3s, border 0.3s;
-    border: 5px solid transparent;
-}
-
-.candidate-label input:checked + .candidate-image {
-    outline: none;
-    border: 5px solid #4CAF50;
-    transition: border 0.3s;
-}
-
-.candidate-image:hover {
-    transform: scale(1.1);
-}
-
-.candidate-label div {
-    margin-top: 5px;
-    font-weight: bold;
-}
-/* Graph Styling */
-#graphs {
-    display: flex;
-    flex-direction: column; /* Align graphs in a column */
-    justify-content: space-between; /* Space equally between graphs */
-    align-items: center; /* Center the graphs horizontally */
-    gap: 20px; /* Adjusts space between graphs */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-canvas {
-    width: 100% !important; /* Ensures graphs span the available width */
-    max-width: 500px; /* Set a max width to control size */
-    height: 300px !important; /* Set height for consistency */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px 0; /* Adds margin between graphs */
-}
-
-
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Adjusts space between buttons */
-    margin-top: 20px;
+.chart-container {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
 }

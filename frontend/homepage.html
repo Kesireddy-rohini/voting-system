@@ -14,25 +14,60 @@
             <div class="candidate">
                 <img src="donald trumph.png" alt="Donald Trump">
                 <h2>Donald Trump</h2>
-                <button onclick="showAgenda('agenda-trump')">Agenda</button>
-                <p class="agenda" id="agenda-trump" style="display: none;">Strengthen borders, restore America's economy, and lead with conservative values.</p>
+                <button onclick="showFullAgenda('agenda-trump-full')">Agenda</button>
             </div>
             <div class="candidate">
                 <img src="kamala harris.png" alt="Kamala Harris">
                 <h2>Kamala Harris</h2>
-                <button onclick="showAgenda('agenda-harris')">Agenda</button>
-                <p class="agenda" id="agenda-harris" style="display: none;">Expand healthcare access, promote equality, and empower citizens through progressive policies.</p>
+                <button onclick="showFullAgenda('agenda-harris-full')">Agenda</button>
             </div>
         </div>
-        <!-- Navigation button to go to the voting preference page -->
-        <button onclick="goToVotingPreference()" class="navigate-button">Go to Voting Preference</button>
+        <button id="voting-preference-btn" onclick="goToVotingPreference()">Voting Preference</button>
+    </div>
+    <div class="qa-section">
+        <h2>Ask about the Candidates</h2>
+        <input type="text" id="userQuestion" placeholder="Type your question here about the candidates..." />
+        <button onclick="askQuestion()">Ask</button>
+        <div id="aiResponse"></div>
     </div>
 
+    <!-- Full-page Agenda for Donald Trump -->
+    <div class="full-page-agenda" id="agenda-trump-full">
+        <div class="agenda-content">
+            <h2>Donald Trump’s Complete Agenda</h2>
+            <p><strong>1. Strengthening Borders and Immigration Control</strong></p>
+            <p>Objective: Enhance national security by implementing strict border control measures.</p>
+            <p>Policy Highlights: Expand funding for the border wall, increase border patrol staff, and enhance monitoring technology. Propose stricter immigration laws and prioritize deportation of individuals with criminal backgrounds.</p>
+            <p><strong>2. Economic Revitalization and Job Creation</strong></p>
+            <p>Objective: Create a thriving economy that brings jobs back to American soil and supports local businesses.</p>
+            <p>Policy Highlights: Focus on tax cuts for corporations and individuals, negotiate trade deals favorable to American businesses, and incentivize companies to bring manufacturing jobs back to the U.S. Emphasize deregulation in industries.</p>
+
+            
+
+            <button onclick="closeFullAgenda('agenda-trump-full')">Close</button>
+        </div>
+    </div>
+
+    <!-- Full-page Agenda for Kamala Harris -->
+    <div class="full-page-agenda" id="agenda-harris-full">
+        <div class="agenda-content">
+            <h2>Kamala Harris’s Complete Agenda</h2>
+            <p><strong>1. Healthcare for All</strong></p>
+            <p>Objective: Ensure accessible, affordable healthcare for all Americans through government-supported programs.</p>
+            <p>Policy Highlights: Support an expansion of the Affordable Care Act, and lower prescription drug prices.</p>
+            <p><strong>2. Climate Action and Environmental Policy</strong></p>
+            <p>Objective: Lead efforts to combat climate change and protect the environment.</p>
+            <p>Policy Highlights: Advocate for net-zero carbon emissions by 2050, rejoin international climate accords, and invest in renewable energy sources.</p>
+
+            
+           
+            <button onclick="closeFullAgenda('agenda-harris-full')">Close</button>
+        </div>
+    </div>
+    
+
+  
+
     <script src="homepage.js"></script>
-    <script>
-        function goToVotingPreference() {
-            window.location.href = "votingpreference.html";
-        }
-    </script>
 </body>
 </html>

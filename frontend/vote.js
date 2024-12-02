@@ -1,89 +1,143 @@
-function submitVote() {
-    // Get selected candidateId
-    const selectedCandidate = document.querySelector('input[name="candidate"]:checked');
-    const candidateId = selectedCandidate ? selectedCandidate.value : null;
+const baseUrl = 'http://127.0.0.1:8081/votes'; // Change port as needed
 
-    if (!candidateId) {
-        alert("Please select a candidate before submitting.");
-        return;
-    }
+// Function to cast a vote for a candidate
+async function castVote(candidateId) {
+    const email = prompt("Enter your email to cast your vote:");
 
-    const email = sessionStorage.getItem("userEmail");
-    if (!email) {
-        alert("Please login to vote.");
-        return;
-    }
-
-    // Send vote data to the server
-    fetch(`http://localhost:8081/votes?candidateId=${candidateId}&email=${email}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+    if (email) {
+        try {
+            const response = await fetch(`${baseUrl}?email=${email}&candidateId=${candidateId}`, {
+                method: 'POST'
+            });
+            const message = await response.text();
+            alert(message);
+        } catch (error) {
+            console.error('Error casting vote:', error);
+            alert('Error casting vote. Please try again.');
         }
-    })
-    .then(response => response.text())
-    .then(message => {
-        alert(message);
-        // Fetch updated graph data and update the graphs dynamically
-        fetchAndRenderCharts();
-    })
-    .catch(error => {
-        alert("Error: " + error.message);
-    });
+    } else {
+        alert('Please enter a valid email.');
+    }
 }
 
-let ageChart, genderChart, professionChart;
+// Fetch data and generate charts
+async function fetchAndRenderGraphs() {
+    const endpoints = {
+        profession: `${baseUrl}/profession`,
+        age: `${baseUrl}/age`,
+        gender: `${baseUrl}/gender`
+    };
 
-async function fetchAndRenderCharts() {
     try {
-        // Fetch updated aggregated data
-        const ageResponse = await fetch("http://localhost:8081/votes/age");
-        const genderResponse = await fetch("http://localhost:8081/votes/gender");
-        const professionResponse = await fetch("http://localhost:8081/votes/profession");
+        const [professionData, ageData, genderData] = await Promise.all([
+            fetch(endpoints.profession).then(response => response.json()),
+            fetch(endpoints.age).then(response => response.json()),
+            fetch(endpoints.gender).then(response => response.json())
+        ]);
 
-        const ageData = await ageResponse.json();
-        const genderData = await genderResponse.json();
-        const professionData = await professionResponse.json();
-
-        // Clear existing graphs before rendering new data
-        if (ageChart) ageChart.destroy();
-        if (genderChart) genderChart.destroy();
-        if (professionChart) professionChart.destroy();
-
-        // Render new graphs with fresh data
-        ageChart = renderGraph("ageGraph", "Age Distribution", Object.keys(ageData), Object.values(ageData));
-        genderChart = renderGraph("genderGraph", "Gender Distribution", Object.keys(genderData), Object.values(genderData));
-        professionChart = renderGraph("professionGraph", "Profession Distribution", Object.keys(professionData), Object.values(professionData));
-
-        // Show the graphs section after rendering the charts
-        document.getElementById("graphs").style.display = "block";
+        generateProfessionChart(professionData);
+        generateAgeChart(ageData);
+        generateGenderChart(genderData);
 
     } catch (error) {
-        console.error("Error fetching chart data:", error);
+        console.error('Error fetching data:', error);
+        alert('Error fetching data. Please try again.');
     }
 }
 
-function renderGraph(canvasId, label, labels, data) {
-    const ctx = document.getElementById(canvasId).getContext("2d");
-    return new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: label,
-                data: data,
-                backgroundColor: "rgba(75, 192, 192, 0.6)",
-                borderColor: "rgba(75, 192, 192, 1)",
-                borderWidth: 1
-            }]
-        },
+// Chart generation functions (similar to previous example)
+function generateProfessionChart(data) {
+    const labels = Object.keys(data);
+    const candidateIds = new Set();
+
+    labels.forEach(label => {
+        Object.keys(data[label]).forEach(candidateId => candidateIds.add(candidateId));
+    });
+
+    const datasets = Array.from(candidateIds).map(candidateId => ({
+        label: `Candidate ${candidateId}`,
+        data: labels.map(label => data[label][candidateId] || 0),
+        borderColor: getRandomColor(),
+        backgroundColor: getRandomColor(0.5)
+    }));
+
+    new Chart(document.getElementById('professionChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets },
         options: {
             responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Votes by Profession' }
             }
         }
     });
+}
+
+function generateAgeChart(data) {
+    const labels = Object.keys(data).map(age => `Age ${age}`);
+    const candidateIds = new Set();
+
+    labels.forEach((_, index) => {
+        const ageKey = Object.keys(data)[index];
+        Object.keys(data[ageKey]).forEach(candidateId => candidateIds.add(candidateId));
+    });
+
+    const datasets = Array.from(candidateIds).map(candidateId => ({
+        label: `Candidate ${candidateId}`,
+        data: labels.map((_, index) => {
+            const ageKey = Object.keys(data)[index];
+            return data[ageKey][candidateId] || 0;
+        }),
+        borderColor: getRandomColor(),
+        backgroundColor: getRandomColor(0.5)
+    }));
+
+    new Chart(document.getElementById('ageChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Votes by Age' }
+            }
+        }
+    });
+}
+
+function generateGenderChart(data) {
+    const labels = Object.keys(data);
+    const candidateIds = new Set();
+
+    labels.forEach(label => {
+        Object.keys(data[label]).forEach(candidateId => candidateIds.add(candidateId));
+    });
+
+    const datasets = Array.from(candidateIds).map(candidateId => ({
+        label: `Candidate ${candidateId}`,
+        data: labels.map(label => data[label][candidateId] || 0),
+        borderColor: getRandomColor(),
+        backgroundColor: getRandomColor(0.5)
+    }));
+
+    new Chart(document.getElementById('genderChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels, datasets },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: { display: true, text: 'Votes by Gender' }
+            }
+        }
+    });
+}
+
+// Utility function for generating random colors
+function getRandomColor(alpha = 1) {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
