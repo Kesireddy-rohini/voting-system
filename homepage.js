@@ -39,5 +39,5 @@ function closeFullAgenda(agendaId) {
 }
 function goToVotingPreference() {
     // Redirect to the voting preference page
-    window.location.href = 'voting-preference.html'; // Replace with the actual URL or path to your voting preference page
+    window.location.href = 'votingpreference.html'; // Replace with the actual URL or path to your voting preference page
 }
