@@ -1,0 +1,60 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17' # Update this to match your project's Java version
+        distribution: 'temurin' # Specify the Java distribution (e.g., temurin, zulu, adopt)
+
+    - name: Install dependencies
+      run: mvn install -DskipTests
+      working-directory: votingsystem # Specify the working directory as 'votingsystem' where the pom.xml is located
+
+    - name: Build project
+      run: mvn package -DskipTests
+      working-directory: votingsystem # Specify the working directory as 'votingsystem' for building
+
+    - name: Upload build artifacts
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: votingsystem/target/*.jar # Path updated to include 'votingsystem' as per project structure
+	deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Tag Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/voting-system:latest .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/voting-sytem:latest ${{ secrets.DOCKER_USERNAME }}/task-tracker:${{ github.sha }}
+
+      - name: Push Docker Image to Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/voting-system:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/voting-system:${{ github.sha }}
