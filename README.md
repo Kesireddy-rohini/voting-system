@@ -1,6 +1,6 @@
-# 🗳️ **Voting System Project**
+# 🗳️ **Vote vault Project**
 
-Welcome to the Voting System project! This application enables users to participate in elections by registering, logging in, and casting their votes. It offers additional features like an AI-powered Q&A system and demographic insights to enhance user experience and provide meaningful insights into voting patterns.
+Welcome to the Vote vault project! This application enables users to participate in elections by registering, logging in, and casting their votes. It offers additional features like an AI-powered Q&A system and demographic insights to enhance user experience and provide meaningful insights into voting patterns.
 
 ---
 
@@ -40,8 +40,8 @@ Welcome to the Voting System project! This application enables users to particip
 
 ## 🛠️ **Tech Stack**
 
-- **Backend:** Spring Boot
-- **Frontend:** To be integrated by frontend developers
+- **Backend:** java , Spring Boot
+- **Frontend:** Html. css, Javasript
 - **Database:** MySQL
 - **Security:** Spring Security (BCryptPasswordEncoder for password encryption)
 - **AI Model:** NLP model for the Q&A feature
